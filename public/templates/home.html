@@ -1,0 +1,37 @@
+<div class="alert alert-success" ng-hide="auth">
+	<h2>Welcome</h2>
+	<a href="" ui-sref="a.signup">Signup for voting and adding albums!</a>
+</div>
+
+<div class="album" ng-repeat="album in albumList.slice().reverse()" ng-style="{'background-image': 'url('+album.albumArt+')'}">
+	<div class="albumInner">
+		<h2>{{album.title}} <small>{{album.artist}}</small></h2>
+		<span class="albumRating">
+			<div class="row">
+				<div class="col-sm-6">
+					<span class="ratingLabel">Global ratings</span>
+					<span ng-repeat="a in range(getRating(album)) track by $index">★</span><span ng-repeat="a in range(5 - getRating(album)) track by $index">☆</span>
+				</div>
+				<div class="col-sm-6 userRatings" ng-if="auth">
+					<span class="ratingLabel">Your rating</span>
+					<span
+						class="activeRating"
+						ng-repeat="a in range(5) track by $index"
+						ng-click="rateAlbum($index, album)"
+						ng-show="album.ratings[auth] > $index">★</span>
+					<span
+						class="activeRating"
+						ng-repeat="a in range(5) track by $index"
+						ng-click="rateAlbum($index, album)"
+						ng-show="album.ratings[auth] <= $index ">☆</span>
+
+					<span
+						class="activeRating"
+						ng-show="album.ratings[auth] == null"
+						ng-repeat="a in range(5) track by $index"
+						ng-click="rateAlbum($index, album)">☆</span>
+				</div>
+			</div>
+		</span>
+	</div>
+</div>

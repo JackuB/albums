@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Add album</h2>
+            <form ng-submit="formAction()">
+                <div class="form-group">
+                    <label for="albumTitle">Album title</label>
+                    <input ng-disabled="formCalled" type="text" class="form-control" ng-model="album.title" id="albumTitle" placeholder="Sgt. Pepper's Lonely Hearts Club Band">
+                </div>
+                <div class="form-group">
+                    <label for="albumArtist">Album artist</label>
+                    <input ng-disabled="formCalled" type="text" class="form-control" ng-model="album.artist" id="albumArtist" placeholder="The Beatles">
+                </div>
+                <div class="form-group" ng-show="album.date">
+                    <label for="albumReleaseDate">Release date</label>
+                    {{album.date | date}}
+                </div>
+                <button type="submit" class="btn btn-default" ng-hide="formCalled">Lookup</button>
+                <button type="submit" class="btn btn-default" ng-show="formCalled">Save</button>
+            </form>
+        </div>
+        <div class="col-sm-6"><img ng-src="{{album.albumArt}}" class="albumPreview" /></div>
+    </div>
+</div>
