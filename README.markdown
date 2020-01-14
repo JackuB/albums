@@ -2,6 +2,7 @@ Welcome to Albums
 =================
 
 blah
+blah
 
 Albums is just an example web app. It's a little "online store" for buying
 music.
